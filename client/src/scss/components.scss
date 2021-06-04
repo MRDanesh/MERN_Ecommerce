@@ -1,0 +1,53 @@
+
+.header{
+    &__right{
+        display: flex;
+    }
+
+    &__Link{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0 1rem;
+        color: var(--color-grey-dark-3);
+        text-decoration: none;
+        font-size: 120%;
+        border-bottom: 2px solid #fff ;
+        transform: scale(1);
+        transition: transform 0.2s, border-bottom 0.2s;
+    }
+
+    &__Link:hover{
+        border-bottom: 2px solid var(--color-grey-dark-2) ;
+        transform: scale(1.05);
+        
+    }
+
+    &__icon{
+        height: 2.5rem;
+    }
+}
+
+.products{
+    display: inline-block;
+    height: 300px;
+    width: 300px;
+
+    
+    &__item{
+        display: flex;
+        flex-direction: column;
+
+        &__image{
+            height: 20rem;
+            width: 25rem;
+        }
+        &__description{
+            display: inline-block;
+            width: 250px;
+        }
+    }
+
+}
+
+

@@ -1,0 +1,15 @@
+.container{
+    max-width: 120rem ;
+    margin: 2rem 4rem;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    height: 5rem;
+    align-items: center;
+
+    background-color: #fff;
+}
