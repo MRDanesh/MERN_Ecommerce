@@ -8,7 +8,7 @@ const Header = () => {
         <header className='header'>
             <div className='header__left'>
                 
-                <Link className='header__Link'>
+                <Link to={`/`} className='header__Link'>
                     <img
                         className='header__icon'
                         src='/images/icons/home_black_24dp.svg'
@@ -18,7 +18,7 @@ const Header = () => {
                 
             </div>
             <div className='header__right'>
-                <Link className='header__Link'>
+                <Link to={`/`} className='header__Link'>
                     <img
                         className='header__icon'
                         src='/images/icons/account_circle_black_24dp.svg'
@@ -28,7 +28,7 @@ const Header = () => {
                     </p>
                 </Link>
                 
-                <Link className='header__Link'>
+                <Link to={`/`} className='header__Link'>
                     <img
                         className='header__icon'
                         src='/images/icons/shopping_cart_black_24dp.svg'

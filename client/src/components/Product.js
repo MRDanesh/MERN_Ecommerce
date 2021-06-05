@@ -1,10 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Product = ({product}) => {
     return (
         <div className='products__item'>
-            <img className='products__item__image' src={product.image}/>
-            <p className='products__item__description'>{product.description}</p>
+            <div className='products__item__container'>
+                <img className='products__item__container__image' src={product.image}/>
+                <Link 
+                    className='products__item__container__detailsButton button'
+                    to={`/product/${product._id}`}
+                >
+                    Details
+                </Link>
+                <Link to={`/`} className='products__item__container__cartButton button'>Add to Cart</Link>
+            </div>
+            
+            <p className='products__item__description'>{product.name}</p>
             <p className='products__item__price'>{product.price}$</p>
         </div>
     )
