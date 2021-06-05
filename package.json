@@ -1,0 +1,22 @@
+{
+  "name": "mern_ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MRDanesh/MERN_Ecommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MRDanesh/MERN_Ecommerce/issues"
+  },
+  "homepage": "https://github.com/MRDanesh/MERN_Ecommerce#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
