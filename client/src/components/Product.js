@@ -5,7 +5,7 @@ const Product = ({product}) => {
     return (
         <div className='products__item'>
             <div className='products__item__container'>
-                <img className='products__item__container__image' src={product.image}/>
+                <img className='products__item__container__image' src={product.image} alt='s'/>
                 <Link 
                     className='products__item__container__detailsButton button'
                     to={`/product/${product._id}`}

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
-import products from '../products';
 
 const ProductScreen = ({match}) => {
-    const product = products.find((product) => product._id === match.params.id);
-    
+    const [product, setProduct] = useState({});
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const {data} = await axios.get(`/api/products/${match.params.id}`);
+            setProduct(data);
+        };
+        fetchProduct();
+    });
+
     return (
         <div className='productScreen'>
             <div className='productScreen__imgContainer'>
-                <img className='productScreen__imgContainer__img' src={product.image} />
+                <img alt='' className='productScreen__imgContainer__img' src={product.image} />
             </div>
             <div className='productScreen__desContainer'>
                 <p className='productScreen__desContainer__description'>

@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AiOutlineHome} from 'react-icons/ai';
 
 
 const Header = () => {
@@ -12,6 +11,7 @@ const Header = () => {
                     <img
                         className='header__icon'
                         src='/images/icons/home_black_24dp.svg'
+                        alt=''
                     />
                     Home
                 </Link>
@@ -22,6 +22,7 @@ const Header = () => {
                     <img
                         className='header__icon'
                         src='/images/icons/account_circle_black_24dp.svg'
+                        alt=''
                     />
                     <p>
                         Profile
@@ -32,6 +33,7 @@ const Header = () => {
                     <img
                         className='header__icon'
                         src='/images/icons/shopping_cart_black_24dp.svg'
+                        alt=''
                     />
                     <p>
                         Cart

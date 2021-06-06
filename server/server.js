@@ -1,10 +1,14 @@
-const express = require('express');
+import express from 'express';
+import dotenv from 'dotenv';
 
-const products = require('./data/products');
+import products from './data/products.js';
+import connectDB from './config/db.js';
+
+dotenv.config();
+
+connectDB();
 
 const app = express();
-
-
 
 app.get('/', (req, res) => {
     res.send('Hello server!!');
@@ -17,7 +21,9 @@ app.get('/api/products', (req, res) => {
 app.get('/api/products/:id', (req, res) => {
     const product = products.find((product) => product._id === req.params.id);
     res.send(product);
-})
+});
 
-app.listen(5000, console.log('server is running'));
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, console.log(`server is running in ${process.env.NODE_ENV} on Port: ${PORT}`));
 
