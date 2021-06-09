@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {listProductDetails} from '../actions/productActions';
 
 
 const ProductScreen = ({match}) => {
-    const [product, setProduct] = useState({});
+    const dispatch = useDispatch();
+
+    const productDetails = useSelector((state) => state.productDetails);
+    const {loading, product, error} = productDetails;
     useEffect(() => {
-        const fetchProduct = async () => {
-            const {data} = await axios.get(`/api/products/${match.params.id}`);
-            setProduct(data);
-        };
-        fetchProduct();
-    });
+        dispatch(listProductDetails(match.params.id));
+    }, []);
+
 
     return (
         <div className='productScreen'>

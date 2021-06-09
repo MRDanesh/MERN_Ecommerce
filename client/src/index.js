@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import './bootstrap.min.css';
+import {Provider} from 'react-redux';
+
 import './scss/main.scss';
+import store from './store';
 import App from './App';
 
 ReactDOM.render(
-  <App />
+  <Provider store={store}>
+    <App />
+  </Provider>
   ,
   document.getElementById('root')
 );

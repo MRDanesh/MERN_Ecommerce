@@ -5,12 +5,12 @@ import Product from '../models/productModel.js';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try{
         const products = await Product.find({});
         res.send(products);
     } catch(err) {
-        res.status(404).send({error: err.message});
+        next(err);
     }
 });
 

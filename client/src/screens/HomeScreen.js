@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Product from '../components/Product';
+import {listProducts} from '../actions/productActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const HomeScreen = () => {
-    const source = axios.CancelToken.source();
+    const dispatch = useDispatch();
+    const productList = useSelector((state) => state.productList);
+    const {loading, products, error} = productList;
 
-    const [products, setProducts] = useState([]);
     useEffect(() => {
-        const fetchProducts = async () => {
-            const {data} = await axios.get('/api/products');
-            setProducts(data);
-        }
-        fetchProducts();
-        return () => {
-            source.cancel()
-        }
-    });
+        dispatch(listProducts());   
+    },[]);
+
+    const renderProducts = () => {
+        return(
+            <>
+                <h2>Products</h2>
+                {products.map((product) => (
+                    <div key={product._id} className='products'>
+                        <Product product={product} />
+                    </div>  
+                ))}
+            </>
+        )
+    };
 
     return (
         <div>
-            <h2>Products</h2>
-            {products.map((product) => (
-                <div key={product._id} className='products'>
-                    <Product product={product} />
-                </div>  
-            ))}
+            {products ? renderProducts():
+            loading ? <Loader/> :
+            <Message error={error} />}
         </div>
     )
 };
 
-export default HomeScreen
+export default HomeScreen;
