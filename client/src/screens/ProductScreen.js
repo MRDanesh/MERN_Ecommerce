@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-
 import {listProductDetails} from '../actions/productActions';
 
 
-const ProductScreen = ({match}) => {
+const ProductScreen = ({match, history}) => {
+    const [qty, setQty] = useState(1);
+
     const dispatch = useDispatch();
 
     const productDetails = useSelector((state) => state.productDetails);
@@ -13,6 +14,23 @@ const ProductScreen = ({match}) => {
         dispatch(listProductDetails(match.params.id));
     }, []);
 
+    const renderQuantity = () => {
+        return (
+            <form>
+                <span className="title">Quantity</span>
+               <div className="select-btn">  
+                  <select onChange={(e) => setQty(e.target.value)} id="streaming">
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                  </select>
+                </div>
+         </form>
+        )
+    };
+
+    const addToCartHandler = () => {
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+    }
 
     return (
         <div className='productScreen'>
@@ -28,8 +46,12 @@ const ProductScreen = ({match}) => {
                 </p>
             </div>
             <div className='productScreen__cartContainer'>
-                <p className='productScreen__cartContainer__status'>Status:{`In Stock`}</p>
-                <button className='productScreen__cartContainer__button'>
+                <div className='productScreen__cartContainer__status'>
+                    Status:{product.countInStock 
+                    ? renderQuantity()
+                    : 'Out of Stock'}
+                </div>
+                <button onClick={() => addToCartHandler()} className='productScreen__cartContainer__button'>
                     Add to Cart
                 </button>
             </div>

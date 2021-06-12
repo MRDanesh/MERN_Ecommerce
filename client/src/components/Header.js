@@ -29,7 +29,7 @@ const Header = () => {
                     </p>
                 </Link>
                 
-                <Link to={`/`} className='header__Link'>
+                <Link to={`/cart`} className='header__Link'>
                     <img
                         className='header__icon'
                         src='/images/icons/shopping_cart_black_24dp.svg'
