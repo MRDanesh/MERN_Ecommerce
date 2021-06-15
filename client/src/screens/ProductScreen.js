@@ -15,13 +15,17 @@ const ProductScreen = ({match, history}) => {
     }, []);
 
     const renderQuantity = () => {
+        const quantityArray = [...Array(product.countInStock).keys()];
         return (
             <form>
                 <span className="title">Quantity</span>
-               <div className="select-btn">  
+                <div className="select-btn">  
                   <select onChange={(e) => setQty(e.target.value)} id="streaming">
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
+                    {quantityArray.map((x) => {
+                        return (
+                            <option key={x+1} value={x+1}>{x+1}</option>
+                        )
+                    })}
                   </select>
                 </div>
          </form>
