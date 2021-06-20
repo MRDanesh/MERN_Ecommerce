@@ -33,6 +33,48 @@ export const authUser = async (req, res, next) => {
     }
 };
 
+// Description: Generate a profile
+// Route: POST /api/users
+// Acess: public
+
+export const registerUser = async (req, res, next) => {
+    const {name, email, password} = req.body;
+
+    const existingUser = await User.findOne({email});
+    if(existingUser) {
+        const error = new Error ('User is already exist');
+        next(error);
+    } else {
+        var salt = bcrypt.genSaltSync(10);
+        var hashedPass = bcrypt.hashSync(password, salt);
+        try {
+            const registeredUser = await User.create({
+            name,
+            email,
+            password: hashedPass
+            });
+            
+            if(registeredUser){
+                res.status(201);
+                res.send({
+                    _id: registeredUser._id,
+                    name: registeredUser.name,
+                    email: registeredUser.email,
+                    isAdmin: registeredUser.isAdmin,
+                    token: generateToken(registeredUser._id)
+                })
+            } else {
+                const error = new Error('Something went Wrong!');
+                next(error);
+            }
+        } catch(err) {
+            next(error);
+        }
+
+        
+    }
+}
+
 // Description: Get current user profile in online shop
 // Route: GET /api/users/profile
 // Acess: Private
