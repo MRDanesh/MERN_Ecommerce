@@ -1,7 +1,49 @@
+//////// Reusable components ////////
 
+
+
+
+
+/////// Header ////////
 .header{
+    position: relative;
     &__right{
         display: flex;
+        flex-direction: row;
+
+        .renderProfile{
+            
+        }
+
+        .dropdown{
+            z-index: 1000;
+            border: 1px solid black;
+            background-color: var(--color-grey-light-3);
+            border-radius: 5%;
+            margin-top: 1rem;
+            position: absolute;
+            right: 1rem;
+            width: 12rem;
+            height: 6rem;
+            font-size: 110%;
+            line-height: 2rem;
+
+        }
+        ul{
+            list-style: none;
+            margin-left: 10px;
+            margin-top: 2px;
+        }
+
+        li{
+            margin-top: 5px;
+        }
+
+        li:hover{
+            cursor: pointer;
+            font-weight: bold;
+        }
+
     }
 
     &__Link{
@@ -16,6 +58,8 @@
         border-bottom: 2px solid #fff ;
         transform: scale(1);
         transition: transform 0.2s, border-bottom 0.2s;
+        
+        
     }
 
     &__Link:hover{
@@ -26,8 +70,11 @@
 
     &__icon{
         height: 2.5rem;
+        
     }
 }
+
+
 
 ////////  HomeScreen
 
@@ -188,7 +235,44 @@
 }
 
 
+//////////// LoginScreen ////////////
 
+.loginScreen {
+    margin: 10% 20%;
+    width: 60%;
+    background-color: rgb(156, 159, 156);
+    border: 1px solid black;
+    border-radius: 1rem;
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem;
+        
+        &__header{
+            font-size: 200%;
+        }
+        &__title{
+            font-size: 150%;
+        }
+        &__input{
+            width: 60%;
+            height: 3rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+        }
+        &__btn{
+            width: 10rem;
+            background-color: rgb(28, 27, 27);
+            border-radius: 0.4rem;
+            color: white;
+            height: 3rem;
+        }
+
+    }
+    
+
+}
 
 
 

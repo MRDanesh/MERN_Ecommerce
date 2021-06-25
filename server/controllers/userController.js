@@ -71,11 +71,10 @@ export const registerUser = async (req, res, next) => {
             next(error);
         }
 
-        
     }
 }
 
-// Description: Get current user profile in online shop
+// Description: Get current user profile 
 // Route: GET /api/users/profile
 // Acess: Private
 
@@ -95,3 +94,29 @@ export const getUserProfile = async (req, res, next) => {
     }
 };
 
+
+// Description: Update current user profile 
+// Route: PUT /api/users/profile
+// Acess: Private
+
+export const updateUserProfile = async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        if(req.body.password) {
+            var salt = bcrypt.genSaltSync(10);
+            var hashedPass = bcrypt.hashSync(req.body.password, salt);
+            user.password = hashedPass;
+        }
+        const updatedUser = await user.save();
+        res.status(201);
+        res.send({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updatedUser._id)
+        });
+    }
+}
