@@ -20,7 +20,6 @@ const RegisterScreen = () => {
             dispatch(register(name, email, password)).then(
                 () => setErr(error)
             );
-            console.log('after promise');
             if(error) {
                 setErr(error);
             }

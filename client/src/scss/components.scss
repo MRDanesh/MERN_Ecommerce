@@ -270,14 +270,18 @@
         }
 
     }
-    
-
 }
 
 
+/////// Profile Screen ////
 
+.productScreen{
+    display: flex;
 
-
+    &__details{
+        width: 30%;
+    }
+}
 
 
 
