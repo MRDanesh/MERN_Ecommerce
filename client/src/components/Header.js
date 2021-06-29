@@ -42,7 +42,7 @@ const Header = () => {
 
     const renderProfile = () => {
         return (
-            <>
+            <div className='profile__container'>
                 <div onClick={() => setOpen(!open)} className='header__Link renderProfile'>
                     <img
                         className='header__icon'
@@ -50,7 +50,7 @@ const Header = () => {
                         alt=''
                     />
                     <div>
-                        {userInfo.name}
+                        Hello, <p className='profile__text'>{userInfo.name}</p>
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@ const Header = () => {
                 : 
                 null
                 }
-            </>
+            </div>
             
         );
     };

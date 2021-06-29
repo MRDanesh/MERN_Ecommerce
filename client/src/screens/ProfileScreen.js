@@ -16,23 +16,30 @@ const ProfileScreen = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [name, setName] = useState(userInfo ? userInfo.name : '');
+    const [error, setError] = useState(null);
 
     useEffect(() =>  {
         dispatch(getUserDetails());
     },[dispatch]);
 
     const onFormSubmit = () => {
-        if (email && password && name){
-            dispatch(updateUserDetails(name, email, password));
+        if (email && password && confirmPassword && name){
+            if (password === confirmPassword) {
+                dispatch(updateUserDetails(name, email, password));
+            } else {
+                setError('Password is not match!')
+            }
+        } else {
+            setError('You need to fill form completely!')
         }
     }
 
-    
-
     return (
-        <div className='productScreen'>
-            {userUpdate.error ? <Message error={userUpdate.error}/> : null}
+        <div className='productScreen'> 
             <div className='productScreen__details'>
+                PROFILE DETAILS
+                {error ? <Message error={error}/> : null}
+                {userUpdate.error ? <Message error={userUpdate.error}/> : null}
                 <div className='loginScreen__form'>
                     
                 

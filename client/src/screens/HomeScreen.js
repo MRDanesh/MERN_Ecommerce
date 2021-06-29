@@ -5,6 +5,8 @@ import Product from '../components/Product';
 import {listProducts} from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import ModalAlert from '../components/Modals/ModalAlert';
+import MyModal from '../components/Modals/MyModal';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -17,14 +19,17 @@ const HomeScreen = () => {
 
     const renderProducts = () => {
         return(
-            <>
-                <h2>Products</h2>
-                {products.map((product) => (
-                    <div key={product._id} className='products'>
-                        <Product product={product} />
-                    </div>  
-                ))}
-            </>
+            <div className='homeScreen'>
+                <h2 className='products__header'>Products</h2>
+                <div className='homeScreen__inner'>
+                    {products.map((product) => (
+                        <div key={product._id} className='products'>
+                            <Product product={product} />
+                        </div>  
+                    ))}
+                </div>
+                
+            </div>
         )
     };
 

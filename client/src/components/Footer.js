@@ -6,6 +6,6 @@ const Footer = () => {
             Copyright @ MRDanesh
         </footer>
     )
-}
+};
 
 export default Footer
