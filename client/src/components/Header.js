@@ -4,14 +4,13 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {logout} from '../actions/userActions';
 
-const Header = () => {
+const Header = ({open, setOpen}) => {
     // REDUX 
     const dispatch = useDispatch();
     const userLogin =useSelector((state) => state.userLogin);
     const {userInfo} = userLogin;
     //DROPDOWN
     const dropdownContainer = createRef();
-    const [open, setOpen] = useState(false);
     const handleClickOutside = (e) => {
         if(dropdownContainer.current && !dropdownContainer.current.contains(e.target)) {
             setOpen(false);

@@ -22,7 +22,7 @@ const CartScreen = ({match, location, history}) => {
     const renderEmpty = () => {
         return (
             <div>
-                Empty
+                Your cart is empty!
             </div>
         )
     };
@@ -31,9 +31,10 @@ const CartScreen = ({match, location, history}) => {
         const quantityArray = [...Array(item.countInStock).keys()];
         return (
             <form>
-                <span className="title">Quantity</span>
+                
                 <div className="select-btn">  
-                  <select onChange={(e) => dispatch(addToCart(item.product, e.target.value))} value={item.qty}  id="streaming">
+                    <span className="title">Quantity</span>
+                    <select onChange={(e) => dispatch(addToCart(item.product, e.target.value))} value={item.qty}  id="streaming">
                     {quantityArray.map((x) => {
                         return (
                             <option key={x+1} value={x+1}>{x+1} </option>
@@ -47,27 +48,41 @@ const CartScreen = ({match, location, history}) => {
 
     const renderCartItems = (item) => {
         return (
-            <div className='cartScreen'>
+            <div className='cartScreen__products'>
                 <img className='cartScreen__image' src={item.image} />
-                <p className='cartScreen__name'>{item.name}</p>
-                <p className='cartScreen__price'>{item.price}$</p>
-                {renderQuantity(item)}
-                <button onClick={() => dispatch(removeFromCart(item.product))}>
-                    <img className='cartScreen__delete' src='/images/icons/delete_black_24dp.svg'/>
-                </button>
+                <div className='cartScreen__products__right'>
+                    
+                    <p>{item.name}</p>
+                    
+                   <div className='cartScreen__products__bottom'>
+                        <p className='cartScreen__price'>{item.price}$</p>
+                        {renderQuantity(item)}
+                        <button onClick={() => dispatch(removeFromCart(item.product))}>
+                        <img className='cartScreen__delete' src='/images/icons/delete_black_24dp.svg'/>
+                    </button>
+                   </div>
+                    
+                </div>
+                
                 
             </div>
         )
     };
 
-
     return (
-        <>
-            {cartItems 
-            ? cartItems.map((item) => <div key={item.product}>{renderCartItems(item)}</div>) 
-            : renderEmpty()}
-        </>
+        <div className='cartScreen'>
+            
+            <div className='cartScreen__left'>
+            SHOPPING CART
+                {cartItems 
+                ? cartItems.map((item) => <div key={item.product}>{renderCartItems(item)}</div>) 
+                : renderEmpty()}
+            </div>
+            <div className='cartScreen_right'>
+                TOTAL AMOUNT: <span>150$</span>
+            </div>
+        </div>
     )
 }
 
-export default CartScreen
+export default CartScreen;

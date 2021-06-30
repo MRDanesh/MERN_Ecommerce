@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Router, Route} from 'react-router-dom';
 
 import Header from './components/Header';
@@ -12,12 +12,17 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 const App = () => {
+  const [open, setOpen] = useState(false);
+
+
   return(
     <Router history={history}>
       <div className='container'>
-      <Header/>
+      <Header open={open} setOpen={setOpen}/>
       <main>
-        <Route path='/' component={HomeScreen} exact />
+        <Route path='/' exact>
+          <HomeScreen open={open} setOpen={setOpen}/>
+        </Route>
         <Route path='/product/:id' component={ProductScreen} />
         <Route path='/cart/:id?' component={CartScreen} />
         <Route path='/login' component={LoginScreen} />

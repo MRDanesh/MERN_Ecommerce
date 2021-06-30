@@ -5,10 +5,8 @@ import Product from '../components/Product';
 import {listProducts} from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import ModalAlert from '../components/Modals/ModalAlert';
-import MyModal from '../components/Modals/MyModal';
 
-const HomeScreen = () => {
+const HomeScreen = ({open}) => {
     const dispatch = useDispatch();
     const productList = useSelector((state) => state.productList);
     const {loading, products, error} = productList;
@@ -19,7 +17,7 @@ const HomeScreen = () => {
 
     const renderProducts = () => {
         return(
-            <div className='homeScreen'>
+            <div className={open ? 'homeScreen' : ''}>
                 <h2 className='products__header'>Products</h2>
                 <div className='homeScreen__inner'>
                     {products.map((product) => (
