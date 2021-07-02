@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {addToCart, removeFromCart} from '../actions/cartActions';
@@ -8,15 +8,28 @@ const CartScreen = ({match, location, history}) => {
     const productId = match.params.id;
     const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
+    const [cartAmount, setCartAmount] = useState(0);
+
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
-    const {cartItems} = cart;
+    const userLogin = useSelector(state => state.userLogin);
+    const {cartItems} = cart; 
+    const {userInfo} = userLogin;
     
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty));
         }
-    }, [dispatch]);
+        subTotal();
+    }, [dispatch, cart]);
+
+    const subTotal = () => {
+        let x = 0;
+        cartItems.map((item) => {
+            x = x + item.qty * item.price;
+        });
+        setCartAmount(x);
+    }
 
     
     const renderEmpty = () => {
@@ -69,6 +82,10 @@ const CartScreen = ({match, location, history}) => {
         )
     };
 
+    const checkOutHandller = () => {
+        history.push('/shipping');
+    };
+
     return (
         <div className='cartScreen'>
             
@@ -78,8 +95,11 @@ const CartScreen = ({match, location, history}) => {
                 ? cartItems.map((item) => <div key={item.product}>{renderCartItems(item)}</div>) 
                 : renderEmpty()}
             </div>
-            <div className='cartScreen_right'>
-                TOTAL AMOUNT: <span>150$</span>
+            <div className='cartScreen__right'>
+                TOTAL AMOUNT: <span className='cartScreen__right__subtotal'>{cartAmount}</span>
+                <button onClick={() => checkOutHandller()} className='cartScreen__right__btn'>
+                    Proceed to Checkout
+                </button>
             </div>
         </div>
     )
