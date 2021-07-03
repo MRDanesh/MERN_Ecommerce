@@ -12,6 +12,8 @@ import history from './history';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -48,6 +50,8 @@ const App = () => {
         <Route path='/register' component={RegisterScreen} />
         <PrivateRoutes path='/shipping' authed={userInfo} component={ShippingScreen} />
         <PrivateRoutes path='/profile' authed={userInfo} component={ProfileScreen}/>
+        <PrivateRoutes path='/payment' authed={userInfo} component={PaymentScreen} />
+        <PrivateRoutes path='/placeorder' authed={userInfo} component={PlaceOrderScreen} />
       </main>
       <Footer/>
       </div>

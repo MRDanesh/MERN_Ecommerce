@@ -394,7 +394,15 @@
 
 
 
+////// Place Order Screen //////
 
+.placeOrderScreen {
+    display: flex;
+
+    &__left{
+        flex-basis: 70%;
+    }
+}
 
 
 

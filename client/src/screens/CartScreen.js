@@ -7,7 +7,7 @@ import {addToCart, removeFromCart} from '../actions/cartActions';
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id;
     const qty = location.search ? Number(location.search.split('=')[1]) : 1;
-
+    
     const [cartAmount, setCartAmount] = useState(0);
 
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const CartScreen = ({match, location, history}) => {
             dispatch(addToCart(productId, qty));
         }
         subTotal();
-    }, [dispatch, cart]);
+    }, [dispatch, cartItems]);
 
     const subTotal = () => {
         let x = 0;
