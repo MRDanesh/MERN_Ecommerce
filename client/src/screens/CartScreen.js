@@ -96,7 +96,7 @@ const CartScreen = ({match, location, history}) => {
                 : renderEmpty()}
             </div>
             <div className='cartScreen__right'>
-                TOTAL AMOUNT: <span className='cartScreen__right__subtotal'>{cartAmount}</span>
+                TOTAL AMOUNT: <span className='cartScreen__right__subtotal'>{cartAmount.toFixed(2)}</span>
                 <button onClick={() => checkOutHandller()} className='cartScreen__right__btn'>
                     Proceed to Checkout
                 </button>

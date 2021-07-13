@@ -12,27 +12,12 @@
 }
 
 
-
-
-.ReactModal__Overlay{
-   
-    border: solid 5px red;
-    
-    
+.dimmerScreen{
+    background-color: rgba(213, 213, 206, 0.85);
+    opacity: 0.5;
+    transition-duration: 0.5s;
 }
-.ReactModal__Content{
-    border-radius: 15px;
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 25%;
-    left: 25%;
-    overflow: auto;
-    background: green;
-    -webkit-overflow-scrolling: touch;
-    padding: 10px;
-    border: solid 1px black;
-}
+
 
 
 /////// Header ////////
@@ -69,8 +54,8 @@
             border-radius: 10px;
             background-color: #fff;
             opacity: 1;
-            transition: opacity 0.5s;
-
+            transition-property: all;
+            transition-duration: 1s;
         }
         ul{
             list-style: none;
@@ -124,8 +109,6 @@
 
 ////////  HomeScreen
 .homeScreen{
-    background-color: rgba(213, 213, 206, 0.85);
-    opacity: 0.5;
     &__inner{
         text-align: center;
     }

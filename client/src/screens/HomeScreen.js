@@ -17,7 +17,7 @@ const HomeScreen = ({open}) => {
 
     const renderProducts = () => {
         return(
-            <div className={open ? 'homeScreen' : ''}>
+            <div className={`${open ? 'dimmerScreen' : ''} homeScreen`}>
                 <h2 className='products__header'>Products</h2>
                 <div className='homeScreen__inner'>
                     {products.map((product) => (

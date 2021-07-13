@@ -41,4 +41,48 @@ export const addOrderItems = async (req, res, next) => {
         next(err);
     }
 
+};
+
+// Description: Get orders by Id
+// Route: GET /api/orders/:id
+// Acess: Private
+
+export const getOrderById = async (req, res, next) => {
+    try{
+        const order = await Order.findById(req.params.id);
+        res.status(201).send(order);
+    } catch (err) {
+        res.status(400);
+        const error = new Error ('There is no order!');
+        next (error);
+    }
+};
+
+// Description: Update order to paid
+// Route: PUT /api/orders/:id/pay
+// Acess: Private
+
+export const updateOrderToPaid = async (req, res, next) => {
+    try{
+        const order = await Order.findById(req.params.id);
+        
+        if(order) {
+            order.isPaid = true;
+            order.paidAt = Date.now();
+            order.paymentResult = {
+                id: req.body.id,
+                status: req.body.status,
+                update_time: req.body.update_time,
+                email_adress: req.body.payer.email_address
+            };
+
+            const updatedOrder = await order.save();
+            res.send(updatedOrder);
+        }
+
+    } catch(err) {
+        res.status(400);
+        const error = new Error ('There is no order!');
+        next (error);
+    }
 }

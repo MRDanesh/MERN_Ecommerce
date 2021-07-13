@@ -14,6 +14,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import OrderScreen from './screens/OrderScreen';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -52,6 +53,7 @@ const App = () => {
         <PrivateRoutes path='/profile' authed={userInfo} component={ProfileScreen}/>
         <PrivateRoutes path='/payment' authed={userInfo} component={PaymentScreen} />
         <PrivateRoutes path='/placeorder' authed={userInfo} component={PlaceOrderScreen} />
+        <PrivateRoutes path='/order/:id' authed={userInfo} component={OrderScreen} />
       </main>
       <Footer/>
       </div>
