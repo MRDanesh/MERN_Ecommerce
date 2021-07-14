@@ -58,6 +58,21 @@ export const getOrderById = async (req, res, next) => {
     }
 };
 
+// Description: Get orders by User
+// Route: GET /api/orders/myorders
+// Acess: Private
+
+export const getMyOrders = async (req, res, next) => {
+    try {
+        const orders = await Order.find({user: req.user._id});
+        res.send(orders);
+    } catch (err) {
+        res.status(400);
+        const error = new Error ('There is no order!');
+        next (error);
+    }
+};
+
 // Description: Update order to paid
 // Route: PUT /api/orders/:id/pay
 // Acess: Private

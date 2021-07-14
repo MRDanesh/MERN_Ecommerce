@@ -15,8 +15,10 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
+import ConfirmationScreen from './screens/ConfirmationScreen';
 
 const App = () => {
+  console.log('rendered!');
   const [open, setOpen] = useState(false);
 
   const userLogin = useSelector(state => state.userLogin);
@@ -51,6 +53,7 @@ const App = () => {
         <Route path='/register' component={RegisterScreen} />
         <PrivateRoutes path='/shipping' authed={userInfo} component={ShippingScreen} />
         <PrivateRoutes path='/profile' authed={userInfo} component={ProfileScreen}/>
+        <PrivateRoutes path='/confirmation' authed={userInfo} component={ConfirmationScreen} />
         <PrivateRoutes path='/payment' authed={userInfo} component={PaymentScreen} />
         <PrivateRoutes path='/placeorder' authed={userInfo} component={PlaceOrderScreen} />
         <PrivateRoutes path='/order/:id' authed={userInfo} component={OrderScreen} />

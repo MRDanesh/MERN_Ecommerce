@@ -6,6 +6,7 @@ import {PayPalButton} from 'react-paypal-button-v2';
 import {getOrderDetails, payOrder} from '../actions/orderActions';
 import {ORDER_PAY_RESET} from '../constants/orderConstants';
 
+
 const OrderScreen = ({history, match}) => {
     const orderId = match.params.id;
 
@@ -25,7 +26,6 @@ const OrderScreen = ({history, match}) => {
     
 
     const successPaymentHandler = (paymentResult) => {
-        console.log(paymentResult);
         dispatch (payOrder(orderId, paymentResult));
     }
 

@@ -24,7 +24,6 @@ const Header = ({open, setOpen}) => {
     }
 
     const mainDrop = useRef();
-    console.log(mainDrop);
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);

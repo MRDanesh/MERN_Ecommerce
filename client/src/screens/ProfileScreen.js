@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import { getUserDetails, updateUserDetails } from '../actions/userActions';
+import {getListMyOrders} from '../actions/orderActions';
 import Message from '../components/Message';
 
 
@@ -10,6 +12,9 @@ const ProfileScreen = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const userUpdate = useSelector((state) => state.userUpdate);
     const {userInfo} = userLogin;
+
+    const myOrdersList = useSelector((state) => state.myOrdersList);
+    const {orders} = myOrdersList;
     
 
     const [email, setEmail] = useState(userInfo ? userInfo.email : '');
@@ -20,6 +25,7 @@ const ProfileScreen = () => {
 
     useEffect(() =>  {
         dispatch(getUserDetails());
+        dispatch(getListMyOrders());
     },[dispatch]);
 
     const onFormSubmit = () => {
@@ -34,9 +40,13 @@ const ProfileScreen = () => {
         }
     }
 
+    const renderOrders = (orders) => {
+        
+    }
+
     return (
-        <div className='productScreen'> 
-            <div className='productScreen__details'>
+        <div className='profileScreen'> 
+            <div className='profileScreen__details'>
                 PROFILE DETAILS
                 {error ? <Message error={error}/> : null}
                 {userUpdate.error ? <Message error={userUpdate.error}/> : null}
@@ -96,8 +106,36 @@ const ProfileScreen = () => {
                         
                 </div>
             </div>
-            <div className='productScreen__orders'>
+            <div className = 'profileScreen__orders'>
                 MY ORDERS
+
+                <div>
+                    <div className = 'profileScreen__orders__header main '>
+                        <p className='profileScreen__orders__header__components id main'>ID</p>
+                        <p className='profileScreen__orders__header__components main'>DATE</p>
+                        <p className='profileScreen__orders__header__components main'>TOTAL</p>
+                        <p className='profileScreen__orders__header__components main'>DELIVERED</p>
+                    </div>
+
+                    
+                        {orders 
+                        ? orders.map((order) => {
+                            return (
+                                <div className='profileScreen__orders__header'>
+                                    
+                                    <p className='profileScreen__orders__header__components id'>{order._id}</p>
+                                    <p className='profileScreen__orders__header__components'>{order.createdAt.substring(0,10)}</p>
+                                    <p className='profileScreen__orders__header__components'>{order.totalPrice}$</p>
+                                    <p className='profileScreen__orders__header__components'>{order.isDelivered ? <i class="check green icon"></i> : <i class="times red icon"></i>}</p>
+                                    <div className='profileScreen__orders__header__components' ><Link className='details__button' to='/myorders/id'> DETAILS</Link></div>
+                                </div>
+                            )
+                        })
+                        : null }
+                    
+                    
+
+                </div>
             </div>
         </div>
     )
